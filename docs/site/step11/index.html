@@ -1,0 +1,922 @@
+
+
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.2">
+    
+    
+      
+        <title>R11. Piedra aplasta Tijeras - Kata Rock Paper Scissors Lizard Spock</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.a2408e81.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../assets/style.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#desarrollo-del-requisito-11" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Cabecera">
+    <a href=".." title="Kata Rock Paper Scissors Lizard Spock" class="md-header-nav__button md-logo" aria-label="Kata Rock Paper Scissors Lizard Spock">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Kata Rock Paper Scissors Lizard Spock
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              R11. Piedra aplasta Tijeras
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Limpiar" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Kata Rock Paper Scissors Lizard Spock" class="md-nav__button md-logo" aria-label="Kata Rock Paper Scissors Lizard Spock">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Kata Rock Paper Scissors Lizard Spock
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Introducción" class="md-nav__link">
+      Introducción
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../step0/" title="Preparación" class="md-nav__link">
+      Preparación
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../step1/" title="R1. Jugadas iguales, empate" class="md-nav__link">
+      R1. Jugadas iguales, empate
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../step2/" title="R2. Tijeras cortan Papel" class="md-nav__link">
+      R2. Tijeras cortan Papel
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../step3/" title="R3. Papel recubre Piedra" class="md-nav__link">
+      R3. Papel recubre Piedra
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../step4/" title="R4. Piedra aplasta Lagarto" class="md-nav__link">
+      R4. Piedra aplasta Lagarto
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../step5/" title="R5. Lagarto envenena Spock" class="md-nav__link">
+      R5. Lagarto envenena Spock
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../step6/" title="R6. Spock rompe Tijeras" class="md-nav__link">
+      R6. Spock rompe Tijeras
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../step7/" title="R7. Tijeras decapitan Lagarto" class="md-nav__link">
+      R7. Tijeras decapitan Lagarto
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../step8/" title="R8. Lagarto come Papel" class="md-nav__link">
+      R8. Lagarto come Papel
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../step9/" title="R9. Papel desaprueba Spock" class="md-nav__link">
+      R9. Papel desaprueba Spock
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../step10/" title="R10. Spock vaporiza Piedra" class="md-nav__link">
+      R10. Spock vaporiza Piedra
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        R11. Piedra aplasta Tijeras
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="R11. Piedra aplasta Tijeras" class="md-nav__link md-nav__link--active">
+      R11. Piedra aplasta Tijeras
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requisito" class="md-nav__link">
+    Requisito
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#desarrollo" class="md-nav__link">
+    Desarrollo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resultado-final" class="md-nav__link">
+    Resultado final
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#futuros-pasos" class="md-nav__link">
+    Futuros pasos
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../step12/" title="CodeSmell. Switch Statement" class="md-nav__link">
+      CodeSmell. Switch Statement
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../step13/" title="Refactor Switch Statement" class="md-nav__link">
+      Refactor Switch Statement
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requisito" class="md-nav__link">
+    Requisito
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#desarrollo" class="md-nav__link">
+    Desarrollo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resultado-final" class="md-nav__link">
+    Resultado final
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#futuros-pasos" class="md-nav__link">
+    Futuros pasos
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <h1 id="desarrollo-del-requisito-11">Desarrollo del requisito 11</h1>
+<h2 id="requisito">Requisito</h2>
+<div class="admonition success">
+<p class="admonition-title">La piedra aplasta a las tijeras</p>
+</div>
+<h2 id="desarrollo">Desarrollo</h2>
+<p>Nuevo requisito que podemos agrupar.</p>
+<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">TestRuleEngine</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">rock_crushes_scissors</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="n">invokeAndCheckResult</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">ROCK</span><span class="p">,</span> <span class="n">PlayMove</span><span class="p">.</span><span class="na">SCISSORS</span><span class="p">,</span> <span class="n">PlayResult</span><span class="p">.</span><span class="na">WIN_PLAYER_ONE</span><span class="p">);</span>
+  <span class="n">invokeAndCheckResult</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">SCISSORS</span><span class="p">,</span> <span class="n">PlayMove</span><span class="p">.</span><span class="na">ROCK</span><span class="p">,</span> <span class="n">PlayResult</span><span class="p">.</span><span class="na">WIN_PLAYER_TWO</span><span class="p">);</span>
+
+<span class="p">}</span>  
+</code></pre></div>
+</td></tr></table>
+
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">RuleEngine</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isPlayWinner</span><span class="p">(</span><span class="n">PlayMove</span> <span class="n">moveOne</span><span class="p">,</span> <span class="n">PlayMove</span> <span class="n">moveTwo</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">moveOne</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">SCISSORS</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">moveTwo</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">PAPER</span><span class="p">)</span> <span class="o">||</span> <span class="n">moveTwo</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">LIZARD</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">moveOne</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">PAPER</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">moveTwo</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">ROCK</span><span class="p">)</span> <span class="o">||</span> <span class="n">moveTwo</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">SPOCK</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">moveOne</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">ROCK</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">moveTwo</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">LIZARD</span><span class="p">)</span> <span class="o">||</span> <span class="n">moveTwo</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">SCISSORS</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">moveOne</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">LIZARD</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">moveTwo</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">SPOCK</span><span class="p">)</span> <span class="o">||</span> <span class="n">moveTwo</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">PAPER</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">moveOne</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">SPOCK</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">moveTwo</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">SCISSORS</span><span class="p">))</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+
+</div>
+</div>
+<h2 id="resultado-final">Resultado final</h2>
+<p>Ya hemos terminado la implementación y tenemos esto:</p>
+<div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">TestRuleEngine</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestRuleEngine</span> <span class="p">{</span>
+
+  <span class="n">RuleEngine</span> <span class="n">ruleEngine</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RuleEngine</span><span class="p">();</span>
+
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">equals_move_result_draw</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="n">invokeAndCheckResult</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">ROCK</span><span class="p">,</span> <span class="n">PlayMove</span><span class="p">.</span><span class="na">ROCK</span><span class="p">,</span> <span class="n">PlayResult</span><span class="p">.</span><span class="na">DRAW</span><span class="p">);</span>
+    <span class="n">invokeAndCheckResult</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">PAPER</span><span class="p">,</span> <span class="n">PlayMove</span><span class="p">.</span><span class="na">PAPER</span><span class="p">,</span> <span class="n">PlayResult</span><span class="p">.</span><span class="na">DRAW</span><span class="p">);</span>
+    <span class="n">invokeAndCheckResult</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">SCISSORS</span><span class="p">,</span> <span class="n">PlayMove</span><span class="p">.</span><span class="na">SCISSORS</span><span class="p">,</span> <span class="n">PlayResult</span><span class="p">.</span><span class="na">DRAW</span><span class="p">);</span>
+    <span class="n">invokeAndCheckResult</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">LIZARD</span><span class="p">,</span> <span class="n">PlayMove</span><span class="p">.</span><span class="na">LIZARD</span><span class="p">,</span> <span class="n">PlayResult</span><span class="p">.</span><span class="na">DRAW</span><span class="p">);</span>
+    <span class="n">invokeAndCheckResult</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">SPOCK</span><span class="p">,</span> <span class="n">PlayMove</span><span class="p">.</span><span class="na">SPOCK</span><span class="p">,</span> <span class="n">PlayResult</span><span class="p">.</span><span class="na">DRAW</span><span class="p">);</span>
+
+  <span class="p">}</span>
+
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">scissors_cuts_paper</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="n">invokeAndCheckResult</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">SCISSORS</span><span class="p">,</span> <span class="n">PlayMove</span><span class="p">.</span><span class="na">PAPER</span><span class="p">,</span> <span class="n">PlayResult</span><span class="p">.</span><span class="na">WIN_PLAYER_ONE</span><span class="p">);</span>
+    <span class="n">invokeAndCheckResult</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">PAPER</span><span class="p">,</span> <span class="n">PlayMove</span><span class="p">.</span><span class="na">SCISSORS</span><span class="p">,</span> <span class="n">PlayResult</span><span class="p">.</span><span class="na">WIN_PLAYER_TWO</span><span class="p">);</span>
+
+  <span class="p">}</span>
+
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">paper_cover_rock</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="n">invokeAndCheckResult</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">PAPER</span><span class="p">,</span> <span class="n">PlayMove</span><span class="p">.</span><span class="na">ROCK</span><span class="p">,</span> <span class="n">PlayResult</span><span class="p">.</span><span class="na">WIN_PLAYER_ONE</span><span class="p">);</span>
+    <span class="n">invokeAndCheckResult</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">ROCK</span><span class="p">,</span> <span class="n">PlayMove</span><span class="p">.</span><span class="na">PAPER</span><span class="p">,</span> <span class="n">PlayResult</span><span class="p">.</span><span class="na">WIN_PLAYER_TWO</span><span class="p">);</span>
+
+  <span class="p">}</span>
+
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">rock_crushes_lizard</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="n">invokeAndCheckResult</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">ROCK</span><span class="p">,</span> <span class="n">PlayMove</span><span class="p">.</span><span class="na">LIZARD</span><span class="p">,</span> <span class="n">PlayResult</span><span class="p">.</span><span class="na">WIN_PLAYER_ONE</span><span class="p">);</span>
+    <span class="n">invokeAndCheckResult</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">LIZARD</span><span class="p">,</span> <span class="n">PlayMove</span><span class="p">.</span><span class="na">ROCK</span><span class="p">,</span> <span class="n">PlayResult</span><span class="p">.</span><span class="na">WIN_PLAYER_TWO</span><span class="p">);</span>
+
+  <span class="p">}</span>
+
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">lizard_poisons_spock</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="n">invokeAndCheckResult</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">LIZARD</span><span class="p">,</span> <span class="n">PlayMove</span><span class="p">.</span><span class="na">SPOCK</span><span class="p">,</span> <span class="n">PlayResult</span><span class="p">.</span><span class="na">WIN_PLAYER_ONE</span><span class="p">);</span>
+    <span class="n">invokeAndCheckResult</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">SPOCK</span><span class="p">,</span> <span class="n">PlayMove</span><span class="p">.</span><span class="na">LIZARD</span><span class="p">,</span> <span class="n">PlayResult</span><span class="p">.</span><span class="na">WIN_PLAYER_TWO</span><span class="p">);</span>
+
+  <span class="p">}</span>
+
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">spock_smashes_scissors</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="n">invokeAndCheckResult</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">SPOCK</span><span class="p">,</span> <span class="n">PlayMove</span><span class="p">.</span><span class="na">SCISSORS</span><span class="p">,</span> <span class="n">PlayResult</span><span class="p">.</span><span class="na">WIN_PLAYER_ONE</span><span class="p">);</span>
+    <span class="n">invokeAndCheckResult</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">SCISSORS</span><span class="p">,</span> <span class="n">PlayMove</span><span class="p">.</span><span class="na">SPOCK</span><span class="p">,</span> <span class="n">PlayResult</span><span class="p">.</span><span class="na">WIN_PLAYER_TWO</span><span class="p">);</span>
+
+  <span class="p">}</span>
+
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">scissors_decapitates_lizard</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="n">invokeAndCheckResult</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">SCISSORS</span><span class="p">,</span> <span class="n">PlayMove</span><span class="p">.</span><span class="na">LIZARD</span><span class="p">,</span> <span class="n">PlayResult</span><span class="p">.</span><span class="na">WIN_PLAYER_ONE</span><span class="p">);</span>
+    <span class="n">invokeAndCheckResult</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">LIZARD</span><span class="p">,</span> <span class="n">PlayMove</span><span class="p">.</span><span class="na">SCISSORS</span><span class="p">,</span> <span class="n">PlayResult</span><span class="p">.</span><span class="na">WIN_PLAYER_TWO</span><span class="p">);</span>
+
+  <span class="p">}</span>
+
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">lizard_eats_paper</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="n">invokeAndCheckResult</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">LIZARD</span><span class="p">,</span> <span class="n">PlayMove</span><span class="p">.</span><span class="na">PAPER</span><span class="p">,</span> <span class="n">PlayResult</span><span class="p">.</span><span class="na">WIN_PLAYER_ONE</span><span class="p">);</span>
+    <span class="n">invokeAndCheckResult</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">PAPER</span><span class="p">,</span> <span class="n">PlayMove</span><span class="p">.</span><span class="na">LIZARD</span><span class="p">,</span> <span class="n">PlayResult</span><span class="p">.</span><span class="na">WIN_PLAYER_TWO</span><span class="p">);</span>
+
+  <span class="p">}</span>
+
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">paper_disproves_spock</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="n">invokeAndCheckResult</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">PAPER</span><span class="p">,</span> <span class="n">PlayMove</span><span class="p">.</span><span class="na">SPOCK</span><span class="p">,</span> <span class="n">PlayResult</span><span class="p">.</span><span class="na">WIN_PLAYER_ONE</span><span class="p">);</span>
+    <span class="n">invokeAndCheckResult</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">SPOCK</span><span class="p">,</span> <span class="n">PlayMove</span><span class="p">.</span><span class="na">PAPER</span><span class="p">,</span> <span class="n">PlayResult</span><span class="p">.</span><span class="na">WIN_PLAYER_TWO</span><span class="p">);</span>
+
+  <span class="p">}</span>
+
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">spock_vaporizes_rock</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="n">invokeAndCheckResult</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">SPOCK</span><span class="p">,</span> <span class="n">PlayMove</span><span class="p">.</span><span class="na">ROCK</span><span class="p">,</span> <span class="n">PlayResult</span><span class="p">.</span><span class="na">WIN_PLAYER_ONE</span><span class="p">);</span>
+    <span class="n">invokeAndCheckResult</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">ROCK</span><span class="p">,</span> <span class="n">PlayMove</span><span class="p">.</span><span class="na">SPOCK</span><span class="p">,</span> <span class="n">PlayResult</span><span class="p">.</span><span class="na">WIN_PLAYER_TWO</span><span class="p">);</span>
+
+  <span class="p">}</span>
+
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">rock_crushes_scissors</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="n">invokeAndCheckResult</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">ROCK</span><span class="p">,</span> <span class="n">PlayMove</span><span class="p">.</span><span class="na">SCISSORS</span><span class="p">,</span> <span class="n">PlayResult</span><span class="p">.</span><span class="na">WIN_PLAYER_ONE</span><span class="p">);</span>
+    <span class="n">invokeAndCheckResult</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">SCISSORS</span><span class="p">,</span> <span class="n">PlayMove</span><span class="p">.</span><span class="na">ROCK</span><span class="p">,</span> <span class="n">PlayResult</span><span class="p">.</span><span class="na">WIN_PLAYER_TWO</span><span class="p">);</span>
+
+  <span class="p">}</span>
+
+  <span class="kd">private</span> <span class="kt">void</span> <span class="nf">invokeAndCheckResult</span><span class="p">(</span><span class="n">PlayMove</span> <span class="n">playerOne</span><span class="p">,</span> <span class="n">PlayMove</span> <span class="n">playerTwo</span><span class="p">,</span> <span class="n">PlayResult</span> <span class="n">expectedResult</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="n">Assert</span><span class="p">.</span><span class="na">assertEquals</span><span class="p">(</span><span class="n">expectedResult</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="na">ruleEngine</span><span class="p">.</span><span class="na">play</span><span class="p">(</span><span class="n">playerOne</span><span class="p">,</span> <span class="n">playerTwo</span><span class="p">));</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+
+</div>
+<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">RuleEngine</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RuleEngine</span> <span class="p">{</span>
+
+  <span class="kd">public</span> <span class="n">PlayResult</span> <span class="nf">play</span><span class="p">(</span><span class="n">PlayMove</span> <span class="n">playerOne</span><span class="p">,</span> <span class="n">PlayMove</span> <span class="n">playerTwo</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">isPlayerOneWinner</span><span class="p">(</span><span class="n">playerOne</span><span class="p">,</span> <span class="n">playerTwo</span><span class="p">))</span>
+      <span class="k">return</span> <span class="n">PlayResult</span><span class="p">.</span><span class="na">WIN_PLAYER_ONE</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">isPlayerTwoWinner</span><span class="p">(</span><span class="n">playerOne</span><span class="p">,</span> <span class="n">playerTwo</span><span class="p">))</span>
+      <span class="k">return</span> <span class="n">PlayResult</span><span class="p">.</span><span class="na">WIN_PLAYER_TWO</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="n">PlayResult</span><span class="p">.</span><span class="na">DRAW</span><span class="p">;</span>
+
+  <span class="p">}</span>
+
+  <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isPlayerOneWinner</span><span class="p">(</span><span class="n">PlayMove</span> <span class="n">playerOne</span><span class="p">,</span> <span class="n">PlayMove</span> <span class="n">playerTwo</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="k">return</span> <span class="n">isPlayWinner</span><span class="p">(</span><span class="n">playerOne</span><span class="p">,</span> <span class="n">playerTwo</span><span class="p">);</span>
+
+  <span class="p">}</span>
+
+  <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isPlayerTwoWinner</span><span class="p">(</span><span class="n">PlayMove</span> <span class="n">playerOne</span><span class="p">,</span> <span class="n">PlayMove</span> <span class="n">playerTwo</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="k">return</span> <span class="n">isPlayWinner</span><span class="p">(</span><span class="n">playerTwo</span><span class="p">,</span> <span class="n">playerOne</span><span class="p">);</span>
+
+  <span class="p">}</span>
+
+  <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isPlayWinner</span><span class="p">(</span><span class="n">PlayMove</span> <span class="n">moveOne</span><span class="p">,</span> <span class="n">PlayMove</span> <span class="n">moveTwo</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">moveOne</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">SCISSORS</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">moveTwo</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">PAPER</span><span class="p">)</span> <span class="o">||</span> <span class="n">moveTwo</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">LIZARD</span><span class="p">)))</span>
+      <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">moveOne</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">PAPER</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">moveTwo</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">ROCK</span><span class="p">)</span> <span class="o">||</span> <span class="n">moveTwo</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">SPOCK</span><span class="p">)))</span>
+      <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">moveOne</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">ROCK</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">moveTwo</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">LIZARD</span><span class="p">)</span> <span class="o">||</span> <span class="n">moveTwo</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">SCISSORS</span><span class="p">)))</span>
+      <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">moveOne</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">LIZARD</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">moveTwo</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">SPOCK</span><span class="p">)</span> <span class="o">||</span> <span class="n">moveTwo</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">PAPER</span><span class="p">)))</span>
+      <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">moveOne</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">SPOCK</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">moveTwo</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">SCISSORS</span><span class="p">)</span> <span class="o">||</span> <span class="n">moveTwo</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">PlayMove</span><span class="p">.</span><span class="na">ROCK</span><span class="p">)))</span>
+      <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+
+  <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+
+</div>
+</div>
+<h2 id="futuros-pasos">Futuros pasos</h2>
+<p>Aunque la clase y los métodos sean cortos, el método <code>isPlayWinner</code> sigue teniendo 5 condiciones <code>if</code> que además son complejas porque tienen tres comparaciones cada una.</p>
+<p>Estamos ante el típico <code>smell</code> que nos aparecerá muchísimas veces a lo largo de nuestra vida <strong><code>Switch Statement</code></strong>.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Pie">
+        
+          <a href="../step10/" title="R10. Spock vaporiza Piedra" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Anterior
+                </span>
+                R10. Spock vaporiza Piedra
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../step12/" title="CodeSmell. Switch Statement" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Siguiente
+                </span>
+                CodeSmell. Switch Statement
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copiar al portapapeles", "clipboard.copied": "Copiado al portapapeles", "search.config.lang": "es", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.27c6a5e6.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

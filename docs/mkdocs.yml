@@ -1,0 +1,41 @@
+site_name: Kata Rock Paper Scissors Lizard Spock
+
+
+nav:
+  - Introducción: index.md
+  - Preparación: step0.md
+  - R1. Jugadas iguales, empate: step1.md
+  - R2. Tijeras cortan Papel: step2.md
+  - R3. Papel recubre Piedra: step3.md
+  - R4. Piedra aplasta Lagarto: step4.md
+  - R5. Lagarto envenena Spock: step5.md
+  - R6. Spock rompe Tijeras: step6.md
+  - R7. Tijeras decapitan Lagarto: step7.md
+  - R8. Lagarto come Papel: step8.md
+  - R9. Papel desaprueba Spock: step9.md
+  - R10. Spock vaporiza Piedra: step10.md
+  - R11. Piedra aplasta Tijeras: step11.md
+  - CodeSmell. Switch Statement: step12.md
+  - Refactor Switch Statement: step13.md
+
+theme:
+    name: material
+    language: es
+    
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.critic
+  - codehilite
+  - pymdownx.tabbed
+  - pymdownx.superfences
+  - pymdownx.details
+  - markdown.extensions.toc:
+      permalink: false
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - attr_list
+extra_css:
+  - assets/style.css  
+
+

@@ -1,0 +1,1113 @@
+
+
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.2">
+    
+    
+      
+        <title>CodeSmell. Switch Statement - Kata Rock Paper Scissors Lizard Spock</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.a2408e81.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../assets/style.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#code-smell-switch-statement" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Cabecera">
+    <a href=".." title="Kata Rock Paper Scissors Lizard Spock" class="md-header-nav__button md-logo" aria-label="Kata Rock Paper Scissors Lizard Spock">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Kata Rock Paper Scissors Lizard Spock
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              CodeSmell. Switch Statement
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Limpiar" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Kata Rock Paper Scissors Lizard Spock" class="md-nav__button md-logo" aria-label="Kata Rock Paper Scissors Lizard Spock">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Kata Rock Paper Scissors Lizard Spock
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Introducción" class="md-nav__link">
+      Introducción
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../step0/" title="Preparación" class="md-nav__link">
+      Preparación
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../step1/" title="R1. Jugadas iguales, empate" class="md-nav__link">
+      R1. Jugadas iguales, empate
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../step2/" title="R2. Tijeras cortan Papel" class="md-nav__link">
+      R2. Tijeras cortan Papel
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../step3/" title="R3. Papel recubre Piedra" class="md-nav__link">
+      R3. Papel recubre Piedra
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../step4/" title="R4. Piedra aplasta Lagarto" class="md-nav__link">
+      R4. Piedra aplasta Lagarto
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../step5/" title="R5. Lagarto envenena Spock" class="md-nav__link">
+      R5. Lagarto envenena Spock
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../step6/" title="R6. Spock rompe Tijeras" class="md-nav__link">
+      R6. Spock rompe Tijeras
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../step7/" title="R7. Tijeras decapitan Lagarto" class="md-nav__link">
+      R7. Tijeras decapitan Lagarto
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../step8/" title="R8. Lagarto come Papel" class="md-nav__link">
+      R8. Lagarto come Papel
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../step9/" title="R9. Papel desaprueba Spock" class="md-nav__link">
+      R9. Papel desaprueba Spock
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../step10/" title="R10. Spock vaporiza Piedra" class="md-nav__link">
+      R10. Spock vaporiza Piedra
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../step11/" title="R11. Piedra aplasta Tijeras" class="md-nav__link">
+      R11. Piedra aplasta Tijeras
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        CodeSmell. Switch Statement
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="CodeSmell. Switch Statement" class="md-nav__link md-nav__link--active">
+      CodeSmell. Switch Statement
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#problema" class="md-nav__link">
+    Problema
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tratamiento" class="md-nav__link">
+    Tratamiento
+  </a>
+  
+    <nav class="md-nav" aria-label="Tratamiento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tip-1-decompose-conditional" class="md-nav__link">
+    Tip 1. Decompose Conditional
+  </a>
+  
+    <nav class="md-nav" aria-label="Tip 1. Decompose Conditional">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#como-detectarlo" class="md-nav__link">
+    ¿Como detectarlo?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problema_1" class="md-nav__link">
+    Problema
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solucion" class="md-nav__link">
+    Solución
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tip-2-use-guard-clauses" class="md-nav__link">
+    Tip 2. Use Guard Clauses
+  </a>
+  
+    <nav class="md-nav" aria-label="Tip 2. Use Guard Clauses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#como-detectarlo_1" class="md-nav__link">
+    ¿Como detectarlo?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problema_2" class="md-nav__link">
+    Problema
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solucion_1" class="md-nav__link">
+    Solución
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tip-3-substitute-algorithm" class="md-nav__link">
+    Tip 3. Substitute Algorithm
+  </a>
+  
+    <nav class="md-nav" aria-label="Tip 3. Substitute Algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#como-detectarlo_2" class="md-nav__link">
+    ¿Como detectarlo?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problema_3" class="md-nav__link">
+    Problema
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solucion_2" class="md-nav__link">
+    Solución
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tip-4-use-polymorphism" class="md-nav__link">
+    Tip 4. Use Polymorphism
+  </a>
+  
+    <nav class="md-nav" aria-label="Tip 4. Use Polymorphism">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#como-detectarlo_3" class="md-nav__link">
+    ¿Como detectarlo?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problema_4" class="md-nav__link">
+    Problema
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solucion_3" class="md-nav__link">
+    Solución
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resultado" class="md-nav__link">
+    Resultado
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#excepciones" class="md-nav__link">
+    Excepciones
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#licencia" class="md-nav__link">
+    Licencia
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../step13/" title="Refactor Switch Statement" class="md-nav__link">
+      Refactor Switch Statement
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#problema" class="md-nav__link">
+    Problema
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tratamiento" class="md-nav__link">
+    Tratamiento
+  </a>
+  
+    <nav class="md-nav" aria-label="Tratamiento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tip-1-decompose-conditional" class="md-nav__link">
+    Tip 1. Decompose Conditional
+  </a>
+  
+    <nav class="md-nav" aria-label="Tip 1. Decompose Conditional">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#como-detectarlo" class="md-nav__link">
+    ¿Como detectarlo?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problema_1" class="md-nav__link">
+    Problema
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solucion" class="md-nav__link">
+    Solución
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tip-2-use-guard-clauses" class="md-nav__link">
+    Tip 2. Use Guard Clauses
+  </a>
+  
+    <nav class="md-nav" aria-label="Tip 2. Use Guard Clauses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#como-detectarlo_1" class="md-nav__link">
+    ¿Como detectarlo?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problema_2" class="md-nav__link">
+    Problema
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solucion_1" class="md-nav__link">
+    Solución
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tip-3-substitute-algorithm" class="md-nav__link">
+    Tip 3. Substitute Algorithm
+  </a>
+  
+    <nav class="md-nav" aria-label="Tip 3. Substitute Algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#como-detectarlo_2" class="md-nav__link">
+    ¿Como detectarlo?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problema_3" class="md-nav__link">
+    Problema
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solucion_2" class="md-nav__link">
+    Solución
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tip-4-use-polymorphism" class="md-nav__link">
+    Tip 4. Use Polymorphism
+  </a>
+  
+    <nav class="md-nav" aria-label="Tip 4. Use Polymorphism">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#como-detectarlo_3" class="md-nav__link">
+    ¿Como detectarlo?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problema_4" class="md-nav__link">
+    Problema
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solucion_3" class="md-nav__link">
+    Solución
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resultado" class="md-nav__link">
+    Resultado
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#excepciones" class="md-nav__link">
+    Excepciones
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#licencia" class="md-nav__link">
+    Licencia
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <h1 id="code-smell-switch-statement">Code Smell: <code>Switch Statement</code></h1>
+<p>Casi todos nuestros algoritmos, tarde o temprano, van a hacer uso de operadores <code>switch / if</code>, y por tanto nos aparecerán este tipo de problemas.</p>
+<p>Es muy fácil de detectar si en nuestro código observamos un conjunto de <code>switch</code> o <code>if-else</code> que se comporta como un grupo de acciones único.</p>
+<p><img alt="" src="../assets/images/switch-statements-01.png" /></p>
+<h2 id="problema">Problema</h2>
+<p>El problema que nos puede traer este operador es doble:</p>
+<ul>
+<li>Dificulta la lectura del código ya que obliga al desarrollador a memorizar el stack de las clausulas anteriores.</li>
+<li>Suele ser frecuente que si tenemos un operador <code>switch</code>, ese operador esté repartido en más sitios del código y por tanto, a la hora de modificar una condición, deberemos acordarnos de modificarlo varias veces.</li>
+</ul>
+<h2 id="tratamiento">Tratamiento</h2>
+<p>Existen diferentes tratamientos dependiendo del tipo de condicional que tengamos, incluso a veces se pueden aplicar varios tratamientos a la vez. Dependerá mucho de la casuística que se nos presente, a continuación veremos las acciones más típicas.</p>
+<h3 id="tip-1-decompose-conditional">Tip 1. Decompose Conditional</h3>
+<div style="text-align: right">
+    <div class="md-button button-tag-mini light-green">Extract Method</div>
+    <div class="md-button button-tag-mini light-green">Extract Variable</div>
+    <div class="md-button button-tag-mini light-green">Magic Number</div>
+</div>
+
+<h4 id="como-detectarlo">¿Como detectarlo?</h4>
+<p>Se da cuando vemos un condicional que es complejo o tiene muchas condiciones aunque sean sencillas.</p>
+<h4 id="problema_1">Problema</h4>
+<p>El problema que nos aparece es que mientras estás ocupado averiguando lo que hace el código de dentro del bloque, olvidas cual era la condición. Y mientras estás ocupado averiguando cual era la condición, olvidas lo que hace el código de dentro del bloque. </p>
+<p>Obliga al cerebro a releer varias veces el mismo código hasta asimilarlo por completo. Por ejemplo:</p>
+<div class="highlight"><pre><span></span><code>  <span class="k">if</span> <span class="p">(</span><span class="n">date</span><span class="p">.</span><span class="na">before</span><span class="p">(</span><span class="n">SUMMER_START</span><span class="p">)</span> <span class="o">||</span> <span class="n">date</span><span class="p">.</span><span class="na">after</span><span class="p">(</span><span class="n">SUMMER_END</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">charge</span> <span class="o">=</span> <span class="n">quantity</span> <span class="o">*</span> <span class="n">winterRate</span> <span class="o">+</span> <span class="n">winterServiceCharge</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="n">charge</span> <span class="o">=</span> <span class="n">quantity</span> <span class="o">*</span> <span class="n">summerRate</span><span class="p">;</span>
+  <span class="p">}</span>
+</code></pre></div>
+
+<h4 id="solucion">Solución</h4>
+<p>Una posible solución es descomponer las partes complicadas del condicional y separarlo en métodos diferentes: <code>condición</code>, <code>then</code>, <code>else</code>.</p>
+<p>Al extraer el código a métodos correctamente nombrados, le estamos dando un valor semántico a las condiciones y por tanto facilitando su lectura.</p>
+<div class="highlight"><pre><span></span><code>  <span class="k">if</span> <span class="p">(</span><span class="n">isNotSummer</span><span class="p">(</span><span class="n">date</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">charge</span> <span class="o">=</span> <span class="n">quantity</span> <span class="o">*</span> <span class="n">winterRate</span> <span class="o">+</span> <span class="n">winterServiceCharge</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="n">charge</span> <span class="o">=</span> <span class="n">quantity</span> <span class="o">*</span> <span class="n">summerRate</span><span class="p">;</span>
+  <span class="p">}</span>
+</code></pre></div>
+
+<h3 id="tip-2-use-guard-clauses">Tip 2. Use Guard Clauses</h3>
+<div style="text-align: right">
+    <div class="md-button button-tag-mini light-green">Add return</div>
+    <div class="md-button button-tag-mini light-green">Add throws</div>
+</div>
+
+<h4 id="como-detectarlo_1">¿Como detectarlo?</h4>
+<p>Se da cuando vemos condicionales anidados que parecen simples y siguen un flujo de respuesta en bloque.</p>
+<h4 id="problema_2">Problema</h4>
+<p>El problema que nos aparece es que al estar anidados, es muy dificil seguir el flujo normal de ejecución. </p>
+<p>Obliga al cerebro a tener que volver atrás muchas veces, para leer condiciones e identaciones de las clausulas. Por ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kt">double</span> <span class="nf">getPayAmount</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kt">double</span> <span class="n">result</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">isDead</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">deadAmount</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">isSeparated</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">separatedAmount</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">isRetired</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">retiredAmount</span><span class="p">();</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="p">{</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">normalPayAmount</span><span class="p">();</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h4 id="solucion_1">Solución</h4>
+<p>Hay que identificar cuales son las clausulas que conducen a un punto terminal (generalmente con una excepción o una devolución inmediata del valor).</p>
+<p>Una vez identificadas, se debe reorganizar el código con el objetivo de <em>aplanar</em> la estructura de código, e introducir un punto de return en las clausulas de guarda.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kt">double</span> <span class="nf">getPayAmount</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">isDead</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">deadAmount</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">isSeparated</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">separatedAmount</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">isRetired</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">retiredAmount</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="n">normalPayAmount</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="tip-3-substitute-algorithm">Tip 3. Substitute Algorithm</h3>
+<div style="text-align: right">
+    <div class="md-button button-tag-mini light-green">Maps</div>
+    <div class="md-button button-tag-mini light-green">Lists</div>
+    <div class="md-button button-tag-mini light-green">Functions</div>
+</div>
+
+<h4 id="como-detectarlo_2">¿Como detectarlo?</h4>
+<p>Se da cuando hay una algoritmia clara o una correlación entre la condición y lo que hace el bloque de código.</p>
+<h4 id="problema_3">Problema</h4>
+<p>Las condiciones ya nos están diciendo claramente lo que va a hacer el código. Hay una especie de duplicidad innecesaria.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="n">String</span> <span class="nf">foundPerson</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">people</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">people</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">people</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;Don&quot;</span><span class="p">))</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="s">&quot;Don&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">people</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;John&quot;</span><span class="p">))</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="s">&quot;John&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">people</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;Kent&quot;</span><span class="p">))</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="s">&quot;Kent&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h4 id="solucion_2">Solución</h4>
+<p>Tal vez existe un algoritmo mucho más simple y eficiente que pueda realizar esa misma funcionalidad. </p>
+<p>A veces también se puede sustituir por <code>List</code>, <code>Map</code> o por librerías o frameworks que ya realizan esa funcionalidad.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span> <span class="n">List</span> <span class="n">candidates</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span>
+      <span class="k">new</span> <span class="n">String</span><span class="o">[]</span> <span class="p">{</span><span class="s">&quot;Don&quot;</span><span class="p">,</span> <span class="s">&quot;John&quot;</span><span class="p">,</span> <span class="s">&quot;Kent&quot;</span><span class="p">});</span>
+
+<span class="kd">public</span> <span class="n">String</span> <span class="nf">foundPerson</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">people</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">people</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">candidates</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">people</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">))</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="n">people</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="tip-4-use-polymorphism">Tip 4. Use Polymorphism</h3>
+<div style="text-align: right">
+    <div class="md-button button-tag-mini light-green">State Pattern</div>
+    <div class="md-button button-tag-mini light-green">Strategy Pattern</div>
+</div>
+
+<h4 id="como-detectarlo_3">¿Como detectarlo?</h4>
+<p>Cuando tenemos que cada una de las condiciones realizan una acción diferente dependiendo del tipo de condición. Además, puede ser que esta misma estructura la tengamos varias veces repetidas en el código.</p>
+<h4 id="problema_4">Problema</h4>
+<p>Si aparecen nuevos tipos de condiciones debemos crear nuevas acciones y recordar que debemos modificar todas las estructuras condionales que tengamos iguales.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Bird</span> <span class="p">{</span>
+
+  <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getSpeed</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="n">type</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">case</span> <span class="n">EUROPEAN</span><span class="p">:</span> <span class="k">return</span> <span class="n">getBaseSpeed</span><span class="p">();</span>
+      <span class="k">case</span> <span class="n">AFRICAN</span><span class="p">:</span> <span class="k">return</span> <span class="n">getBaseSpeed</span><span class="p">()</span> <span class="o">-</span> <span class="n">getLoadFactor</span><span class="p">()</span> <span class="o">*</span> <span class="n">numberOfCoconuts</span><span class="p">;</span>
+      <span class="k">case</span> <span class="n">NORWEGIAN_BLUE</span><span class="p">:</span> <span class="k">return</span> <span class="p">(</span><span class="n">isNailed</span><span class="p">)</span> <span class="o">?</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">getBaseSpeed</span><span class="p">(</span><span class="n">voltage</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="p">(</span><span class="s">&quot;Should be unreachable&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="kd">public</span> <span class="n">String</span> <span class="nf">getColor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="n">type</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">case</span> <span class="n">EUROPEAN</span><span class="p">:</span> <span class="k">return</span> <span class="n">BROWNISH</span><span class="p">;</span>
+      <span class="k">case</span> <span class="n">AFRICAN</span><span class="p">:</span> <span class="k">return</span> <span class="n">ELECTRIC_YELLOW</span><span class="p">;</span>
+      <span class="k">case</span> <span class="n">NORWEGIAN_BLUE</span><span class="p">:</span> <span class="k">return</span> <span class="n">BLUE</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="p">(</span><span class="s">&quot;Should be unreachable&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getSize</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">...</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+
+<h4 id="solucion_3">Solución</h4>
+<p>Utiliando la herencia se pueden crear subclases que implementen sus propio comportamiento, mientras que en la clase base implementaremos el comportamiento estandar. Se puede implementar el <code>State Pattern</code> o el <code>Strategy Pattern</code>.</p>
+<p>Hay que crear una clase base con el caso general y luego una subclase con cada una de las condiciones del condicional.
+Luego hay que implementar los métodos necesarios en cada subclase y mover el código del condicional a la subclase.</p>
+<p>Si aparecen nuevos tipos solo hay que implementar una nueva subclase con su comportamiento.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Bird</span> <span class="p">{</span>
+
+  <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getSpeed</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="p">(</span><span class="s">&quot;Should be unreachable&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="kd">public</span> <span class="n">String</span> <span class="nf">getColor</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="p">(</span><span class="s">&quot;Should be unreachable&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getSize</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">...</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="kd">class</span> <span class="nc">European</span> <span class="kd">extends</span> <span class="n">Bird</span> <span class="p">{</span>
+
+ <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getSpeed</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="k">return</span> <span class="n">getBaseSpeed</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="kd">public</span> <span class="n">String</span> <span class="nf">getColor</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="k">return</span> <span class="n">BROWNISH</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getSize</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">...</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">African</span> <span class="kd">extends</span> <span class="n">Bird</span> <span class="p">{</span>
+
+ <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getSpeed</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="k">return</span> <span class="n">getBaseSpeed</span><span class="p">()</span> <span class="o">-</span> <span class="n">getLoadFactor</span><span class="p">()</span> <span class="o">*</span> <span class="n">numberOfCoconuts</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kd">public</span> <span class="n">String</span> <span class="nf">getColor</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="k">return</span> <span class="n">ELECTRIC_YELLOW</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getSize</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">...</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="kd">class</span> <span class="nc">NorwegianBlue</span> <span class="kd">extends</span> <span class="n">Bird</span> <span class="p">{</span>
+
+ <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getSpeed</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="k">return</span> <span class="n">getBaseSpeed</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="kd">public</span> <span class="n">String</span> <span class="nf">getColor</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">isNailed</span><span class="p">)</span> <span class="o">?</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">getBaseSpeed</span><span class="p">(</span><span class="n">voltage</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getSize</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">...</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="resultado">Resultado</h2>
+<p>Hemos conseguido tener el código más organizado, más legible y por tanto más fácil de entender y modificar.
+Además, es muy probable que hayamos disminuido el código duplicado.</p>
+<p><img alt="" src="../assets/images/switch-statements-02.png" /></p>
+<h2 id="excepciones">Excepciones</h2>
+<p>Aunque es buena práctica eliminar este tipo de <code>smells</code> hay alguna excepción donde no está aconsejado hacerlo:</p>
+<ul>
+<li>Cuando un <code>switch</code> realiza acciones muy simples y no se repite en el código, no es necesario refactorizar en profundidad.</li>
+<li>A menudo, los operadores <code>switch</code> se utilizan en los patrones <code>Factory Method</code> o <code>Abstract Factory</code> para seleccionar la clase a crear.</li>
+</ul>
+<h2 id="licencia">Licencia</h2>
+<p>Las imagenes del tutorial han sido extraidas de <a href="https://refactoring.guru/">Refactoring Guru</a>.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Pie">
+        
+          <a href="../step11/" title="R11. Piedra aplasta Tijeras" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Anterior
+                </span>
+                R11. Piedra aplasta Tijeras
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../step13/" title="Refactor Switch Statement" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Siguiente
+                </span>
+                Refactor Switch Statement
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copiar al portapapeles", "clipboard.copied": "Copiado al portapapeles", "search.config.lang": "es", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.27c6a5e6.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
