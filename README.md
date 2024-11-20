@@ -6,7 +6,7 @@ Es una Kata sencilla de implementar y que ofrece la posibilidad de refactorizar 
 
 ## Consejos
 
-+ Haremos solo una tarea a la vez. Tenemos que aprender a trabajar de forma incremental.
++ Haremos solo una tarea a la vez. Tenemos que aprender a trabajar de forma incremental. 
 + Para esta kata solo vamos a testear las entradas correctas. Por agilidad en la session.
 + Llegaremos hasta donde nos de tiempo. No se trata de terminarlo, sino de aprender durante el proceso.
 + Programaremos entre todos. No existe una solución correcta y una incorrecta, se puede hacer de muchas formas.
