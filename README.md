@@ -5,7 +5,7 @@ Esta Kata está basada en el juego modificado que aparece en la serie The Big Ba
 Es una Kata sencilla de implementar y que ofrece la posibilidad de refactorizar el *switch statement* que nos irá apareciendo a lo largo de la implementación. 
 
 ## Consejos
-
+ 
 + Haremos solo una tarea a la vez. Tenemos que aprender a trabajar de forma incremental. 
 + Para esta kata solo vamos a testear las entradas correctas. Por agilidad en la session.
 + Llegaremos hasta donde nos de tiempo. No se trata de terminarlo, sino de aprender durante el proceso.
